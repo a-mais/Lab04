@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AlugueisRepository extends BaseRepository<Alugueis> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lab04");
 
     public AlugueisRepository() {
         super(Alugueis.class);

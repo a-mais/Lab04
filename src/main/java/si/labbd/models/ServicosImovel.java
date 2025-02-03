@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -33,7 +34,7 @@ public class ServicosImovel {
     private Date dataServico;
 
     @Column(name = "valor_total", precision = 10, scale = 2)
-    private Double valorTotal;
+    private BigDecimal valorTotal;
 
     @Column(columnDefinition = "TEXT")
     private String obs;

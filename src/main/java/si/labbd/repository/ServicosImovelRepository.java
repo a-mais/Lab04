@@ -6,11 +6,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.util.List;
 
-public class ServicoImovelRepository extends BaseRepository<ServicosImovel> {
+public class ServicosImovelRepository extends BaseRepository<ServicosImovel> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lab04");
 
-    public ServicoImovelRepository() {
+    public ServicosImovelRepository() {
         super(ServicosImovel.class);
     }
 

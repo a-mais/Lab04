@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -27,7 +28,7 @@ public class Alugueis {
     private Date dataVencimento;
 
     @Column(name = "valor_pago", precision = 10, scale = 2)
-    private Double valorPago;
+    private BigDecimal valorPago;
 
     @Column(name = "data_pagamento")
     private Date dataPagamento;

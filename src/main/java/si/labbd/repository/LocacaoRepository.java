@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LocacaoRepository extends BaseRepository<Locacao> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lab04");
 
     public LocacaoRepository() {
         super(Locacao.class);

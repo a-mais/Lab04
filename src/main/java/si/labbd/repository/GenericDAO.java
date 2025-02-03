@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GenericDAO<T> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lab04");
     private final Class<T> entityClass;
 
     public GenericDAO(Class<T> entityClass) {

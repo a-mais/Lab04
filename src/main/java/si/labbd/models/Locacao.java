@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -30,10 +31,10 @@ public class Locacao {
     private Clientes inquilino;
 
     @Column(precision = 10, scale = 4)
-    private Double valorAluguel;
+    private BigDecimal valorAluguel;
 
     @Column(precision = 5, scale = 2)
-    private Double percentualMulta;
+    private BigDecimal percentualMulta;
 
     @Column(name = "dia_vencimento", columnDefinition = "TINYINT")
     private Byte diaVencimento;

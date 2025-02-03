@@ -6,7 +6,9 @@ import si.labbd.models.Clientes;
 import si.labbd.repository.LocacaoRepository;
 import si.labbd.repository.ImoveisRepository;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 public class LocacaoService {
     private final LocacaoRepository locacaoRepository;
@@ -17,8 +19,15 @@ public class LocacaoService {
         this.imoveisRepository = new ImoveisRepository();
     }
 
-    // Registrar uma nova locação, verificando a disponibilidade do imóvel
+    // Registrar uma nova locação
     public void registrarLocacao(Clientes inquilino, Imoveis imovel, Date dataInicio, Date dataFim, Double valorAluguel) {
+
+        // Verificar se já existe uma locação ativa para o imóvel
+        Optional<Locacao> locacaoExistente = locacaoRepository.findById(imovel.getId());
+        if (locacaoExistente.isPresent() && locacaoExistente.get().isAtivo()) {
+            System.out.println("❌ Erro: O imóvel já está alugado e não pode ser locado no momento.");
+            return;
+        }
 
         // Criar nova locação
         Locacao novaLocacao = new Locacao();
@@ -26,11 +35,12 @@ public class LocacaoService {
         novaLocacao.setImovel(imovel);
         novaLocacao.setDataInicio(dataInicio);
         novaLocacao.setDataFim(dataFim);
+        novaLocacao.setValorAluguel(BigDecimal.valueOf(valorAluguel));
         novaLocacao.setAtivo(true); // A locação agora está ativa
 
         // Salvar no banco de dados
         locacaoRepository.save(novaLocacao);
 
-        System.out.println("Locação registrada com sucesso para o imóvel ID: " + imovel.getId());
+        System.out.println("✅ Locação registrada com sucesso para o imóvel ID: " + imovel.getId());
     }
 }

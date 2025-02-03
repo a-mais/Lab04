@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
@@ -31,7 +33,7 @@ public class Profissionais {
     private String telefone2;
 
     @Column(precision = 10, scale = 2)
-    private Double valor_hora;
+    private BigDecimal valor_hora;
 
     @Column(columnDefinition = "TEXT")
     private String obs;

@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 
 public class ClientesRepository extends BaseRepository<Clientes> {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lab04");
 
     public ClientesRepository() {
         super(Clientes.class);
