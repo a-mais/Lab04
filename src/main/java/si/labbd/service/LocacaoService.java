@@ -25,8 +25,7 @@ public class LocacaoService {
         // Verificar se já existe uma locação ativa para o imóvel
         Optional<Locacao> locacaoExistente = locacaoRepository.findById(imovel.getId());
         if (locacaoExistente.isPresent() && locacaoExistente.get().isAtivo()) {
-            System.out.println("❌ Erro: O imóvel já está alugado e não pode ser locado no momento.");
-            return;
+            throw new RuntimeException("Erro: O imóvel já está alugado e não pode ser locado no momento.");
         }
 
         // Criar nova locação
@@ -40,7 +39,5 @@ public class LocacaoService {
 
         // Salvar no banco de dados
         locacaoRepository.save(novaLocacao);
-
-        System.out.println("✅ Locação registrada com sucesso para o imóvel ID: " + imovel.getId());
     }
 }

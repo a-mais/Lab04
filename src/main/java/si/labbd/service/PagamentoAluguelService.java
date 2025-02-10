@@ -32,8 +32,6 @@ public class PagamentoAluguelService {
         aluguel.setDataPagamento(dataPagamento);
         aluguel.setValorPago(valorFinal);
         alugueisRepository.update(aluguel);
-
-        System.out.println("Pagamento registrado! Valor final: R$ " + valorFinal);
     }
 
     // Calcular multa de 0,33% por dia de atraso, limitada a 20% do valor do aluguel
