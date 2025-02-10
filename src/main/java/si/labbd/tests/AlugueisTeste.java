@@ -24,7 +24,7 @@ public class AlugueisTeste {
         if (locacaoOpt.isPresent()) {
             novoAluguel.setLocacao(locacaoOpt.get());
         } else {
-            System.out.println("❌ Erro: Locação não encontrada!");
+            System.out.println("Erro: Locação não encontrada!");
             return;
         }
 
@@ -34,30 +34,30 @@ public class AlugueisTeste {
 
         // Salvando o aluguel no banco
         alugueisRepo.save(novoAluguel);
-        System.out.println("✅ Aluguel cadastrado com sucesso!");
+        System.out.println("Aluguel cadastrado com sucesso!");
 
         // Buscar um aluguel pelo ID
-        System.out.println("\n🔍 Buscando aluguel com ID 1...");
+        System.out.println("\nBuscando aluguel com ID 1...");
         Optional<Alugueis> aluguelOpt = alugueisRepo.findById(1);
         aluguelOpt.ifPresentOrElse(
             aluguel -> System.out.println("✔ Aluguel encontrado: Locação " + aluguel.getLocacao().getId() + " - Valor Pago: R$" + aluguel.getValorPago()),
-            () -> System.out.println("❌ Aluguel não encontrado.")
+            () -> System.out.println("Aluguel não encontrado.")
         );
 
         //Registrar Pagamento no Banco
-         System.out.println("\n📋 Registrando pagamento do aluguel...");
+         System.out.println("\nRegistrando pagamento do aluguel...");
          PagamentoAluguelService pagamentoAluguelService = new PagamentoAluguelService();
          pagamentoAluguelService.registrarPagamento(1, BigDecimal.valueOf(3300.50), new Date());
 
         // Listar todos os aluguéis cadastrados
-        System.out.println("\n📋 Lista de aluguéis cadastrados:");
+        System.out.println("\nLista de aluguéis cadastrados:");
         List<Alugueis> listaAlugueis = alugueisRepo.findAll();
         if (!listaAlugueis.isEmpty()) {
             listaAlugueis.forEach(aluguel ->
                 System.out.println(aluguel.getId() + " - Locação: " + aluguel.getLocacao().getId() + " - Valor Pago: R$" + aluguel.getValorPago())
             );
         } else {
-            System.out.println("⚠️ Nenhum aluguel cadastrado.");
+            System.out.println("Nenhum aluguel cadastrado.");
         }
 
         // Atualizar um aluguel
@@ -65,19 +65,19 @@ public class AlugueisTeste {
             Alugueis aluguelAtualizado = aluguelOpt.get();
             aluguelAtualizado.setObs("Valor atualizado devido a reajuste.");
             alugueisRepo.update(aluguelAtualizado);
-            System.out.println("\n🔄 Aluguel atualizado com sucesso!");
+            System.out.println("\nAluguel atualizado com sucesso!");
         }
 
 //        // Deletar um aluguel
-//        System.out.println("\n🗑️ Deletando aluguel com ID 1...");
+//        System.out.println("\nDeletando aluguel com ID 1...");
 //        alugueisRepo.deleteById(1);
-//        System.out.println("✅ Aluguel deletado com sucesso!");
+//        System.out.println("Aluguel deletado com sucesso!");
 //
 //        // Listar novamente para verificar a exclusão
-//        System.out.println("\n📋 Lista de aluguéis após exclusão:");
+//        System.out.println("\nLista de aluguéis após exclusão:");
 //        List<Alugueis> listaAposExclusao = alugueisRepo.findAll();
 //        if (listaAposExclusao.isEmpty()) {
-//            System.out.println("✅ Nenhum aluguel cadastrado após a exclusão.");
+//            System.out.println("Nenhum aluguel cadastrado após a exclusão.");
 //        } else {
 //            listaAposExclusao.forEach(aluguel ->
 //                System.out.println(aluguel.getId() + " - Locação: " + aluguel.getLocacao().getId() + " - Valor Pago: R$" + aluguel.getValorPago())

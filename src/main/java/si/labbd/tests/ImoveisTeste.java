@@ -24,7 +24,7 @@ public class ImoveisTeste {
         if (proprietarioOpt.isPresent()) {
             novoImovel.setProprietario(proprietarioOpt.get());
         } else {
-            System.out.println("❌ Erro: Proprietário não encontrado!");
+            System.out.println("Erro: Proprietário não encontrado!");
             return;
         }
 
@@ -33,7 +33,7 @@ public class ImoveisTeste {
         if (tipoImovelOpt.isPresent()) {
             novoImovel.setTipoImovel(tipoImovelOpt.get());
         } else {
-            System.out.println("❌ Erro: Tipo de imóvel não encontrado!");
+            System.out.println("Erro: Tipo de imóvel não encontrado!");
             return;
         }
 
@@ -51,23 +51,23 @@ public class ImoveisTeste {
 
         // Salvando o imóvel no banco
         imoveisRepo.save(novoImovel);
-        System.out.println("✅ Imóvel cadastrado com sucesso!");
+        System.out.println("Imóvel cadastrado com sucesso!");
 
         // Buscar um imóvel pelo ID
-        System.out.println("\n🔍 Buscando imóvel com ID 1...");
+        System.out.println("\nBuscando imóvel com ID 1...");
         Optional<Imoveis> imovelOpt = imoveisRepo.findById(1);
         imovelOpt.ifPresentOrElse(
             imovel -> System.out.println("✔ Imóvel encontrado: " + imovel.getLogradouro() + " - Bairro: " + imovel.getBairro()),
-            () -> System.out.println("❌ Imóvel não encontrado.")
+            () -> System.out.println("Imóvel não encontrado.")
         );
 
         // Listar todos os imóveis cadastrados
-        System.out.println("\n📋 Lista de imóveis cadastrados:");
+        System.out.println("\nLista de imóveis cadastrados:");
         List<Imoveis> listaImoveis = imoveisRepo.findAll();
         if (!listaImoveis.isEmpty()) {
             listaImoveis.forEach(imovel -> System.out.println(imovel.getId() + " - " + imovel.getLogradouro() + " - Bairro: " + imovel.getBairro()));
         } else {
-            System.out.println("⚠️ Nenhum imóvel cadastrado.");
+            System.out.println("⚠Nenhum imóvel cadastrado.");
         }
 
         // Atualizar um imóvel
@@ -75,19 +75,19 @@ public class ImoveisTeste {
             Imoveis imovelAtualizado = imovelOpt.get();
             imovelAtualizado.setValorAluguelSugerido(2700.00);
             imoveisRepo.update(imovelAtualizado);
-            System.out.println("\n🔄 Imóvel atualizado com sucesso!");
+            System.out.println("\nImóvel atualizado com sucesso!");
         }
 
 //        // Deletar um imóvel
-//        System.out.println("\n🗑️ Deletando imóvel com ID 1...");
+//        System.out.println("\nDeletando imóvel com ID 1...");
 //        imoveisRepo.deleteById(1);
-//        System.out.println("✅ Imóvel deletado com sucesso!");
+//        System.out.println("Imóvel deletado com sucesso!");
 //
 //        // Listar novamente para verificar a exclusão
-//        System.out.println("\n📋 Lista de imóveis após exclusão:");
+//        System.out.println("\nLista de imóveis após exclusão:");
 //        List<Imoveis> listaAposExclusao = imoveisRepo.findAll();
 //        if (listaAposExclusao.isEmpty()) {
-//            System.out.println("✅ Nenhum imóvel cadastrado após a exclusão.");
+//            System.out.println("Nenhum imóvel cadastrado após a exclusão.");
 //        } else {
 //            listaAposExclusao.forEach(imovel -> System.out.println(imovel.getId() + " - " + imovel.getLogradouro() + " - Bairro: " + imovel.getBairro()));
 //        }

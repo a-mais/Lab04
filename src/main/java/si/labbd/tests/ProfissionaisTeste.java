@@ -22,25 +22,25 @@ public class ProfissionaisTeste {
 
         // Salvando o profissional no banco
         profissionaisRepo.save(novoProfissional);
-        System.out.println("✅ Profissional cadastrado com sucesso!");
+        System.out.println("Profissional cadastrado com sucesso!");
 
         // Buscar um profissional pelo ID
-        System.out.println("\n🔍 Buscando profissional com ID 1...");
+        System.out.println("\nBuscando profissional com ID 1...");
         Optional<Profissionais> profissionalOpt = profissionaisRepo.findById(1);
         profissionalOpt.ifPresentOrElse(
             profissional -> System.out.println("✔ Profissional encontrado: " + profissional.getNome() + " - Profissão: " + profissional.getProfissao()),
-            () -> System.out.println("❌ Profissional não encontrado.")
+            () -> System.out.println("Profissional não encontrado.")
         );
 
         // Listar todos os profissionais cadastrados
-        System.out.println("\n📋 Lista de profissionais cadastrados:");
+        System.out.println("\nLista de profissionais cadastrados:");
         List<Profissionais> listaProfissionais = profissionaisRepo.findAll();
         if (!listaProfissionais.isEmpty()) {
             listaProfissionais.forEach(profissional ->
                 System.out.println(profissional.getId() + " - " + profissional.getNome() + " - Profissão: " + profissional.getProfissao())
             );
         } else {
-            System.out.println("⚠️ Nenhum profissional cadastrado.");
+            System.out.println("Nenhum profissional cadastrado.");
         }
 
         // Atualizar um profissional
@@ -49,19 +49,19 @@ public class ProfissionaisTeste {
             profissionalAtualizado.setValor_hora(BigDecimal.valueOf(60.00));
             profissionalAtualizado.setObs("Profissional atualizado com aumento no valor da hora trabalhada.");
             profissionaisRepo.update(profissionalAtualizado);
-            System.out.println("\n🔄 Profissional atualizado com sucesso!");
+            System.out.println("\nProfissional atualizado com sucesso!");
         }
 
 //        // Deletar um profissional
-//        System.out.println("\n🗑️ Deletando profissional com ID 1...");
+//        System.out.println("\nDeletando profissional com ID 1...");
 //        profissionaisRepo.deleteById(1);
-//        System.out.println("✅ Profissional deletado com sucesso!");
+//        System.out.println("Profissional deletado com sucesso!");
 //
 //        // Listar novamente para verificar a exclusão
-//        System.out.println("\n📋 Lista de profissionais após exclusão:");
+//        System.out.println("\nLista de profissionais após exclusão:");
 //        List<Profissionais> listaAposExclusao = profissionaisRepo.findAll();
 //        if (listaAposExclusao.isEmpty()) {
-//            System.out.println("✅ Nenhum profissional cadastrado após a exclusão.");
+//            System.out.println("Nenhum profissional cadastrado após a exclusão.");
 //        } else {
 //            listaAposExclusao.forEach(profissional ->
 //                System.out.println(profissional.getId() + " - " + profissional.getNome() + " - Profissão: " + profissional.getProfissao())

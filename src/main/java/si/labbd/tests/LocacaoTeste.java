@@ -23,7 +23,7 @@ public class LocacaoTeste {
         // Buscar um imóvel disponível (supondo que o ID 1 já exista)
         Optional<Imoveis> imovelOpt = imoveisRepo.findById(1);
         if (imovelOpt.isEmpty()) {
-            System.out.println("❌ Erro: Imóvel não encontrado!");
+            System.out.println("Erro: Imóvel não encontrado!");
             return;
         }
         Imoveis imovel = imovelOpt.get();
@@ -31,7 +31,7 @@ public class LocacaoTeste {
         // Buscar um cliente (supondo que o ID 1 já exista)
         Optional<Clientes> clienteOpt = clientesRepo.findById(1);
         if (clienteOpt.isEmpty()) {
-            System.out.println("❌ Erro: Cliente não encontrado!");
+            System.out.println("Erro: Cliente não encontrado!");
             return;
         }
         Clientes cliente = clienteOpt.get();
@@ -45,31 +45,31 @@ public class LocacaoTeste {
         locacaoService.registrarLocacao(cliente, imovel, dataInicio, dataFim, valorAluguel);
 
         // Buscar uma locação pelo ID
-        System.out.println("\n🔍 Buscando locação com ID 1...");
+        System.out.println("\nBuscando locação com ID 1...");
         Optional<Locacao> locacaoOpt = locacaoRepo.findById(1);
         locacaoOpt.ifPresentOrElse(
-            locacao -> System.out.println("✔ Locação encontrada: Imóvel " + locacao.getImovel().getLogradouro() + " - Inquilino: " + locacao.getInquilino().getNome()),
-            () -> System.out.println("❌ Locação não encontrada.")
+            locacao -> System.out.println("Locação encontrada: Imóvel " + locacao.getImovel().getLogradouro() + " - Inquilino: " + locacao.getInquilino().getNome()),
+            () -> System.out.println("Locação não encontrada.")
         );
 
-        // Buscar locações de um cliente específico
-        System.out.println("\n🔍 Buscando locações do cliente ID 1...");
+        //TIP Buscar locações de um cliente específico
+        System.out.println("\nBuscando locações do cliente ID 1...");
         List<Locacao> locacoesCliente = locacaoRepo.findByClienteId(1);
         if (!locacoesCliente.isEmpty()) {
             locacoesCliente.forEach(locacao ->
-                System.out.println("✔ Cliente possui locação no imóvel: " + locacao.getImovel().getLogradouro())
+                System.out.println("Cliente possui locação no imóvel: " + locacao.getImovel().getLogradouro())
             );
         } else {
-            System.out.println("⚠️ Nenhuma locação encontrada para o cliente.");
+            System.out.println("Nenhuma locação encontrada para o cliente.");
         }
 
         // Listar todas as locações ativas
-        System.out.println("\n📋 Lista de locações ativas:");
+        System.out.println("\nLista de locações ativas:");
         List<Locacao> listaLocacoes = locacaoRepo.findAll();
         if (!listaLocacoes.isEmpty()) {
             listaLocacoes.forEach(locacao -> System.out.println(locacao.getId() + " - Imóvel: " + locacao.getImovel().getLogradouro() + " - Inquilino: " + locacao.getInquilino().getNome()));
         } else {
-            System.out.println("⚠️ Nenhuma locação cadastrada.");
+            System.out.println("Nenhuma locação cadastrada.");
         }
 
         // Atualizar uma locação
@@ -78,19 +78,19 @@ public class LocacaoTeste {
             locacaoAtualizada.setValorAluguel(BigDecimal.valueOf(3200.00));
             locacaoAtualizada.setObs("Contrato atualizado com reajuste de aluguel.");
             locacaoRepo.update(locacaoAtualizada);
-            System.out.println("\n🔄 Locação atualizada com sucesso!");
+            System.out.println("\nLocação atualizada com sucesso!");
         }
 
         // Deletar uma locação
-        System.out.println("\n🗑️ Deletando locação com ID 1...");
+        System.out.println("\nDeletando locação com ID 1...");
         locacaoRepo.deleteById(1);
-        System.out.println("✅ Locação deletada com sucesso!");
+        System.out.println("Locação deletada com sucesso!");
 
         // Listar novamente para verificar a exclusão
-        System.out.println("\n📋 Lista de locações após exclusão:");
+        System.out.println("\nLista de locações após exclusão:");
         List<Locacao> listaAposExclusao = locacaoRepo.findAll();
         if (listaAposExclusao.isEmpty()) {
-            System.out.println("✅ Nenhuma locação cadastrada após a exclusão.");
+            System.out.println("Nenhuma locação cadastrada após a exclusão.");
         } else {
             listaAposExclusao.forEach(locacao -> System.out.println(locacao.getId() + " - Imóvel: " + locacao.getImovel().getLogradouro() + " - Inquilino: " + locacao.getInquilino().getNome()));
         }

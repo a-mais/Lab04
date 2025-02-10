@@ -26,7 +26,7 @@ public class ServicosImovelTeste {
         if (profissionalOpt.isPresent()) {
             novoServico.setProfissional(profissionalOpt.get());
         } else {
-            System.out.println("❌ Erro: Profissional não encontrado!");
+            System.out.println("Erro: Profissional não encontrado!");
             return;
         }
 
@@ -35,7 +35,7 @@ public class ServicosImovelTeste {
         if (imovelOpt.isPresent()) {
             novoServico.setImovel(imovelOpt.get());
         } else {
-            System.out.println("❌ Erro: Imóvel não encontrado!");
+            System.out.println("Erro: Imóvel não encontrado!");
             return;
         }
 
@@ -46,25 +46,25 @@ public class ServicosImovelTeste {
 
         // Salvando o serviço no banco
         servicosRepo.save(novoServico);
-        System.out.println("✅ Serviço cadastrado com sucesso!");
+        System.out.println("Serviço cadastrado com sucesso!");
 
         // Buscar um serviço pelo ID
-        System.out.println("\n🔍 Buscando serviço com ID 1...");
+        System.out.println("\nBuscando serviço com ID 1...");
         Optional<ServicosImovel> servicoOpt = servicosRepo.findById(1);
         servicoOpt.ifPresentOrElse(
             servico -> System.out.println("✔ Serviço encontrado: " + servico.getProfissional().getNome() + " - Imóvel: " + servico.getImovel().getLogradouro()),
-            () -> System.out.println("❌ Serviço não encontrado.")
+            () -> System.out.println("Serviço não encontrado.")
         );
 
         // Listar todos os serviços cadastrados
-        System.out.println("\n📋 Lista de serviços cadastrados:");
+        System.out.println("\nLista de serviços cadastrados:");
         List<ServicosImovel> listaServicos = servicosRepo.findAll();
         if (!listaServicos.isEmpty()) {
             listaServicos.forEach(servico ->
                 System.out.println(servico.getId() + " - Profissional: " + servico.getProfissional().getNome() + " - Imóvel: " + servico.getImovel().getLogradouro() + " - Valor: R$" + servico.getValorTotal())
             );
         } else {
-            System.out.println("⚠️ Nenhum serviço cadastrado.");
+            System.out.println("Nenhum serviço cadastrado.");
         }
 
         // Atualizar um serviço
@@ -73,19 +73,19 @@ public class ServicosImovelTeste {
             servicoAtualizado.setValorTotal(BigDecimal.valueOf(550.00));
             servicoAtualizado.setObs("Serviço atualizado com acréscimo no valor.");
             servicosRepo.update(servicoAtualizado);
-            System.out.println("\n🔄 Serviço atualizado com sucesso!");
+            System.out.println("\nServiço atualizado com sucesso!");
         }
 
 //        // Deletar um serviço
-//        System.out.println("\n🗑️ Deletando serviço com ID 1...");
+//        System.out.println("\nDeletando serviço com ID 1...");
 //        servicosRepo.deleteById(1);
-//        System.out.println("✅ Serviço deletado com sucesso!");
+//        System.out.println("Serviço deletado com sucesso!");
 //
 //        // Listar novamente para verificar a exclusão
-//        System.out.println("\n📋 Lista de serviços após exclusão:");
+//        System.out.println("\nLista de serviços após exclusão:");
 //        List<ServicosImovel> listaAposExclusao = servicosRepo.findAll();
 //        if (listaAposExclusao.isEmpty()) {
-//            System.out.println("✅ Nenhum serviço cadastrado após a exclusão.");
+//            System.out.println("Nenhum serviço cadastrado após a exclusão.");
 //        } else {
 //            listaAposExclusao.forEach(servico ->
 //                System.out.println(servico.getId() + " - Profissional: " + servico.getProfissional().getNome() + " - Imóvel: " + servico.getImovel().getLogradouro() + " - Valor: R$" + servico.getValorTotal())
